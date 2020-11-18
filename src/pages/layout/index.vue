@@ -1,4 +1,5 @@
 <template>
+<!-- 整体布局 -->
     <div class="layout">
         <div class="layout-header">
             <div class="title">musicplayer</div>
@@ -59,6 +60,7 @@ export default {
         font-size: 22px;
         color: #fff;
         font-weight: bold;
+        margin-left: 30px;
         -webkit-user-select: none;
         cursor: pointer;
     }

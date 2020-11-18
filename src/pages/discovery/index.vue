@@ -1,4 +1,5 @@
 <template>
+<!-- 发现音乐界面 -->
     <div class="discovery">
         <div class="header">
             <ul class="nav">
@@ -21,11 +22,14 @@
             <div class="title"><a>歌单推荐</a></div>
             <div class="content">
                 <div class="section" v-for="(item, index) in recPlaylists" :key="index">
-                    <div class="info">
+                    <div class="info" @click="goPlaylistDetail(index)">
                         <img :src="item.picUrl" alt="">
+                        <div class="info-content">
+
+                        </div>
                     </div>
                     <div class="description">
-                        <a>{{ item.name }}</a>
+                        <p>{{ item.name }}</p>
                     </div>
                 </div>
             </div>
@@ -56,6 +60,7 @@ export default {
             })
             .then(function (res) {
                 _this.banners = res.data.banners;
+                // console.log(res)
             })
             .catch(function (error) {
                 console.log(error);
@@ -70,13 +75,21 @@ export default {
                 }
             })
             .then(function(res) {
-                console.log(res);
+                // console.log(res);
                 _this.recPlaylists = res.data.result;
                 console.log(_this.recPlaylists);
             })
             .catch(function (error) {
                 console.log(error);
             })
+        },
+
+        /* 跳转歌单详情界面 */
+        goPlaylistDetail (index) {
+            this.$router.push({name:'playlist-detail', params:{id:this.recPlaylists[index].id}})
+            console.log(this.$router)
+            console.log(this.$route)
+            console.log(this.recPlaylists[index].id)
         }
     }
 }
@@ -211,8 +224,5 @@ export default {
     min-height: 20px;
     background-color: rgb(201, 201, 201);
 }
-
-/*滚动条移上去的背景*/
-
 
 </style>

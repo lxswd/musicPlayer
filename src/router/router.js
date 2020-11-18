@@ -5,6 +5,7 @@ import VueRouter from 'vue-router'
 const Layout = () => import('@/pages/layout')
 const Discovery = () => import('@/pages/discovery')
 const Playlists = () => import('@/pages/playlists')
+const PlaylistDetail = () => import('@/pages/playlist-detail')
 
 
 
@@ -27,6 +28,11 @@ const routes = [
                 path: 'playlists',
                 name: 'playlists',
                 component: Playlists
+            },
+            {
+                path: 'playlist-detail/:id',
+                name: 'playlist-detail',
+                component: PlaylistDetail
             }
         ]
     },
