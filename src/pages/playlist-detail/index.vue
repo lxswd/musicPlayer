@@ -51,9 +51,7 @@
     </div>
 </template>
 <script>
-// import axios from "axios"
-import {getPlaylistDetail} from '@/utils/api'
-import {getSongListDetail} from '@/utils/api'
+import {getPlaylistDetail, getSongListDetail} from '@/utils/api'
 export default {
     data () {
         return {
@@ -77,10 +75,17 @@ export default {
                 id: _this.$route.params.id
             })
             .then(res => {
-                _this.playlist =  res.playlist;
-                console.log(res)
-                _this.loading = true;
-                _this.gianSongListDetail();
+                console.log('getPlaylistDetail',res)
+                if (res.status == 200) {
+                    _this.playlist =  res.playlist;
+                    _this.loading = true;
+                    _this.gianSongListDetail();
+                } else {
+                    console.log('请求失败')
+                }
+            })
+            .catch(err => {
+                console.log(err)
             })
         },
 

@@ -21,6 +21,7 @@
     </div>
 </template>
 <script>
+import {login} from '@/utils/api'
 export default {
     data () {
         return {
@@ -30,7 +31,22 @@ export default {
     computed: {
     },
     mounted () {
-
+        login({
+            phone: '15301795782',
+            password: 'cz360642'
+        })
+        .then(res => {
+            console.log('login',res)
+            if (res.code == 200) {
+                console.log('登录成功');
+                localStorage.setItem('token', res.token)
+            } else {
+                console.log('登录失败，请重新登录');
+            }
+        })
+        .catch(err => {
+            console.log(err)
+        })
     }
 }
 </script>
